@@ -10,6 +10,7 @@ import AddInput from './../components/AddInput';
 import Empty from './../components/Empty';
 import TodoList from './../components/TodoList';
 import Button from './../components/Button';
+import ErrorModal from './../components/ErrorModal';
 import {COLORS, todoStatus} from './../constants';
 import styles from './../components/styles';
 import {TodoContext} from './../provider/createAppContext';
@@ -24,11 +25,7 @@ const TodosScreen = () => {
   useEffect(() => {
     setData(items);
     setIsLoading(loading);
-  }, [items]);
-
-  const toggleAll = () => {
-    setToggleShowStatus(!toggleShowStatus);
-  };
+  }, [items, loading]);
 
   const filterTodosData = status => {
     setStatus(status);
@@ -132,6 +129,7 @@ const TodosScreen = () => {
         {renderHeader()}
         {renderTodos()}
         {renderBottom()}
+        <ErrorModal />
       </SafeAreaView>
     );
   } else {
